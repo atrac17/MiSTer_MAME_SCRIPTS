@@ -3,7 +3,7 @@
 #A /media/fat/Scripts/update_mame-getter.ini file may be used to set custom location for your MAME files and MRA files.
 #Add the following line to the ini file to set a directory for MRA files: MRADIR=/top/path/to/mra/files
 #Add the following line to the ini file to set a directory for MAME files: MAMEDIR=/path/to/mame
-################################################################################
+#################################################################################
 #set -x
 
 ######VARS#####

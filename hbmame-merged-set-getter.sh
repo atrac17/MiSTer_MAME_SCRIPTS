@@ -2,13 +2,13 @@
 #USE AT YOUR OWN RISK - THIS COMES WITHOUT WARRANTE AND MAY KILL BABY SEALS.
 #A /media/fat/Scripts/update_hbmame-getter.ini file may be used to set custom location for your MAME files and MRA files.
 #Add the following line to the ini file to set a directory for MRA files: MRADIR=/top/path/to/mra/files
-#Add the following line to the ini file to set a directory for MAME files: ROMDIR=/path/to/hbmame 
+#Add the following line to the ini file to set a directory for MAME files: HBMAMEDIR=/path/to/hbmame
 ###############################################################################
 #set -x
 
 ######VARS#####
 
-ROMDIR="/media/fat/_Arcade/hbmame"
+HBMAMEDIR="/media/fat/_Arcade/hbmame"
 MRADIR="/media/fat/_Arcade"
 INIFILE="/media/fat/Scripts/update_hbmame-getter.ini"
 
@@ -16,25 +16,34 @@ INIFILE="/media/fat/Scripts/update_hbmame-getter.ini"
 
 INIFILE_FIXED=$(mktemp)
 if [[ -f "${INIFILE}" ]] ; then
-	dos2unix < "${INIFILE}" 2> /dev/null | grep -v "^exit" > ${INIFILE_FIXED}
+	dos2unix < "${INIFILE}" 2> /dev/null > ${INIFILE_FIXED}
 fi
 
+
+# Warning! ROMDIR is deprecated in favor of HBMAMEDIR. Don't use it!
 if [ `grep -c "ROMDIR=" "${INIFILE_FIXED}"` -gt 0 ]
    then
-      ROMDIR=`grep "ROMDIR" "${INIFILE_FIXED}" | awk -F "=" '{print$2}'`
+      echo "ROMDIR ini property has been renamed HBMAMEDIR."
+      HBMAMEDIR=`grep "ROMDIR" "${INIFILE_FIXED}" | awk -F "=" '{print$2}' | sed -e 's/^"//' -e 's/"$//'`
+fi 2>/dev/null
+
+
+if [ `grep -c "HBMAMEDIR=" "${INIFILE_FIXED}"` -gt 0 ]
+   then
+      HBMAMEDIR=`grep "HBMAMEDIR" "${INIFILE_FIXED}" | awk -F "=" '{print$2}' | sed -e 's/^"//' -e 's/"$//'`
 fi 2>/dev/null 
 
 
 if [ `grep -c "MRADIR=" "${INIFILE_FIXED}"` -gt 0 ]
    then
-      MRADIR=`grep "MRADIR=" "${INIFILE_FIXED}" | awk -F "=" '{print$2}'`
+      MRADIR=`grep "MRADIR=" "${INIFILE_FIXED}" | awk -F "=" '{print$2}' | sed -e 's/^"//' -e 's/"$//'`
 fi 2>/dev/null 
 
-mkdir -p ${ROMDIR}
+mkdir -p ${HBMAMEDIR}
 
 #####INFO TXT#####
 
-if [ `egrep -c "MRADIR|ROMDIR" "${INIFILE_FIXED}"` -gt 0 ]
+if [ `egrep -c "MRADIR|HBMAMEDIR|ROMDIR" "${INIFILE_FIXED}"` -gt 0 ]
    then
       echo ""
       echo "Using "${INIFILE}"" 
@@ -66,7 +75,7 @@ rm /tmp/hbmame.getter.zip.file2
    if [ $(grep -ic hbmame "`head -1 /tmp/hbmame.getter.mra.file`") -ge 1 ]
       then
   
-    if [ ! -f "${ROMDIR}/${f}" ]
+    if [ ! -f "${HBMAMEDIR}/${f}" ]
        then
  
           if [ `grep -c -Fx "${f}" /tmp/hbmame-merged-set-getter.sh` -gt 0 ]
@@ -93,29 +102,29 @@ rm /tmp/hbmame.getter.zip.file2
                 case "$VER" in
                     #--hopfully will see more souces in the future. 
                   0217)
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/hbmame0217"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${HBMAMEDIR}"/"${f}" "https://archive.org/download/hbmame0217"/"${f}"
                             ;;
                   0220)
                            echo "MAME version not listed in MRA or there is no download source for the version, downloading from .220 set"
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/hbmame0220"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${HBMAMEDIR}"/"${f}" "https://archive.org/download/hbmame0220"/"${f}"
                             ;;
                   0221)
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" ""https://archive.org/download/hbmame0221aroms/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${HBMAMEDIR}"/"${f}" ""https://archive.org/download/hbmame0221aroms/"${f}"
                             ;;
                      *)
                            echo "MAME version not listed in MRA or there is no download source for the version, downloading from .220 set"
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/hbmame0220"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${HBMAMEDIR}"/"${f}" "https://archive.org/download/hbmame0220"/"${f}"
                             ;;
                  esac               
  
 #####CLEAN UP######
 
-                      if [ ! -s "$ROMDIR"/"${f}" ]
+                      if [ ! -s "$HBMAMEDIR"/"${f}" ]
                          then
                             echo ""
                             echo "0 byte file found for "${f}"!"
                             echo "This happens when the file is missing or unavalible from the download source."
-                            rm -v "${ROMDIR}"/"${f}"
+                            rm -v "${HBMAMEDIR}"/"${f}"
                             echo ""
            fi
 
@@ -134,7 +143,7 @@ if [ ${#} -ge 1 ] ; then
    echo ""
    echo "Skipping HBMAME files that already exist"
    echo ""
-   echo "Downloading ROMs to "${ROMDIR}" - Be Patient!!!"
+   echo "Downloading ROMs to "${HBMAMEDIR}" - Be Patient!!!"
    echo ""
    sleep 5
    printf '%s\n' "$@" | grep -o ".*\.[mM][rR][aA]" | sort | while read i
@@ -149,7 +158,7 @@ else
    echo ""
    echo "Skipping HBMAME files that already exist"
    echo ""
-   echo "Downloading ROMs to "${ROMDIR}" - Be Patient!!!"
+   echo "Downloading ROMs to "${HBMAMEDIR}" - Be Patient!!!"
    echo ""
    sleep 5
 

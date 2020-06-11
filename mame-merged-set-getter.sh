@@ -2,13 +2,13 @@
 #USE AT YOUR OWN RISK - THIS COMES WITHOUT WARRANTE AND MAY KILL BABY SEALS.
 #A /media/fat/Scripts/update_mame-getter.ini file may be used to set custom location for your MAME files and MRA files.
 #Add the following line to the ini file to set a directory for MRA files: MRADIR=/top/path/to/mra/files
-#Add the following line to the ini file to set a directory for MAME files: ROMDIR=/path/to/mame 
+#Add the following line to the ini file to set a directory for MAME files: MAMEDIR=/path/to/mame
 ################################################################################
 #set -x
 
 ######VARS#####
 
-ROMDIR="/media/fat/_Arcade/mame"
+MAMEDIR="/media/fat/_Arcade/mame"
 MRADIR="/media/fat/_Arcade"
 INIFILE="/media/fat/Scripts/update_mame-getter.ini"
 
@@ -16,25 +16,34 @@ INIFILE="/media/fat/Scripts/update_mame-getter.ini"
 
 INIFILE_FIXED=$(mktemp)
 if [[ -f "${INIFILE}" ]] ; then
-	dos2unix < "${INIFILE}" 2> /dev/null | grep -v "^exit" > ${INIFILE_FIXED}
+	dos2unix < "${INIFILE}" 2> /dev/null > ${INIFILE_FIXED}
 fi
 
+
+# Warning! ROMDIR is deprecated in favor of MAMEDIR. Don't use it!
 if [ `grep -c "ROMDIR=" "${INIFILE_FIXED}"` -gt 0 ]
    then
-      ROMDIR=`grep "ROMDIR" "${INIFILE_FIXED}" | awk -F "=" '{print$2}'`
+      echo "ROMDIR ini property has been renamed MAMEDIR."
+      MAMEDIR=`grep "ROMDIR" "${INIFILE_FIXED}" | awk -F "=" '{print$2}' | sed -e 's/^"//' -e 's/"$//'`
+fi 2>/dev/null
+
+
+if [ `grep -c "MAMEDIR=" "${INIFILE_FIXED}"` -gt 0 ]
+   then
+      MAMEDIR=`grep "MAMEDIR" "${INIFILE_FIXED}" | awk -F "=" '{print$2}' | sed -e 's/^"//' -e 's/"$//'`
 fi 2>/dev/null 
 
 
 if [ `grep -c "MRADIR=" "${INIFILE_FIXED}"` -gt 0 ]
    then
-      MRADIR=`grep "MRADIR=" "${INIFILE_FIXED}" | awk -F "=" '{print$2}'`
+      MRADIR=`grep "MRADIR=" "${INIFILE_FIXED}" | awk -F "=" '{print$2}' | sed -e 's/^"//' -e 's/"$//'`
 fi 2>/dev/null 
 
-mkdir -p ${ROMDIR}
+mkdir -p ${MAMEDIR}
 
 #####INFO TXT#####
 
-if [ `egrep -c "MRADIR|ROMDIR" "${INIFILE_FIXED}"` -gt 0 ]
+if [ `egrep -c "MRADIR|MAMEDIR|ROMDIR" "${INIFILE_FIXED}"` -gt 0 ]
    then
       echo ""
       echo "Using "${INIFILE}"" 
@@ -66,7 +75,7 @@ rm /tmp/mame.getter.zip.file2
    if [ $(grep -ic hbmame "`head -1 /tmp/mame.getter.mra.file`") -eq 0 ]
       then
 
-     if [ ! -f "${ROMDIR}/${f}" ]
+     if [ ! -f "${MAMEDIR}/${f}" ]
        then
  
           if [ `grep -c -Fx "${f}" /tmp/mame-merged-set-getter.sh` -gt 0 ]
@@ -93,40 +102,40 @@ rm /tmp/mame.getter.zip.file2
                 case "$VER" in
                      
 		     '0209')
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O "${ROMDIR}"/"${f}" "https://archive.org/download/MAME209RomsOnlyMerged"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O "${MAMEDIR}"/"${f}" "https://archive.org/download/MAME209RomsOnlyMerged"/"${f}"
                             ;;
                      '0216')
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" ""https://archive.org/download/MAME216RomsOnlyMerged/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${MAMEDIR}"/"${f}" ""https://archive.org/download/MAME216RomsOnlyMerged/"${f}"
                             ;;
                      '0217')
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${MAMEDIR}"/"${f}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip"/"${f}"
                             ;;
                      '0218')
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/MAME218RomsOnlyMerged/MAME%200.218%20ROMs%20%28merged%29.zip"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${MAMEDIR}"/"${f}" "https://archive.org/download/MAME218RomsOnlyMerged/MAME%200.218%20ROMs%20%28merged%29.zip"/"${f}"
                             ;;
                      '0219')
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/MAME219RomsOnlyMerged/MAME%200.219%20ROMs%20%28merged%29.zip"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${MAMEDIR}"/"${f}" "https://archive.org/download/MAME219RomsOnlyMerged/MAME%200.219%20ROMs%20%28merged%29.zip"/"${f}"
                             ;;
 	             '0220')
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/MAME220RomsOnlyMerged"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${MAMEDIR}"/"${f}" "https://archive.org/download/MAME220RomsOnlyMerged"/"${f}"
                             ;;
 	             '0221')
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/MAME221RomsOnlyMerged"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${MAMEDIR}"/"${f}" "https://archive.org/download/MAME221RomsOnlyMerged"/"${f}"
                             ;;			    
                      *)
                            echo "MAME version not listed in MRA or there is no download source for the version, downloading from .217 set"
-                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${ROMDIR}"/"${f}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip"/"${f}" 
+                           wget -q -nc -t 3 --output-file=/tmp/wget-log --no-check-certificate --show-progress -O  "${MAMEDIR}"/"${f}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip"/"${f}"
                             ;;
                  esac               
  
 #####CLEAN UP######
 
-                      if [ ! -s "$ROMDIR"/"${f}" ]
+                      if [ ! -s "$MAMEDIR"/"${f}" ]
                          then
                             echo ""
                             echo "0 byte file found for "${f}"!"
                             echo "This happens when the file is missing or unavalible from the download source."
-                            rm -v "${ROMDIR}"/"${f}"
+                            rm -v "${MAMEDIR}"/"${f}"
                             echo ""
            fi
 
@@ -145,7 +154,7 @@ if [ ${#} -ge 1 ] ; then
    echo ""
    echo "Skipping MAME files that already exist"
    echo ""
-   echo "Downloading ROMs to "${ROMDIR}" - Be Patient!!!"
+   echo "Downloading ROMs to "${MAMEDIR}" - Be Patient!!!"
    echo ""
    sleep 5
    printf '%s\n' "$@" | grep -o ".*\.[mM][rR][aA]" | sort | while read i
@@ -162,7 +171,7 @@ else
    echo ""
    echo "Skipping MAME files that already exist"
    echo ""
-   echo "Downloading ROMs to "${ROMDIR}" - Be Patient!!!"
+   echo "Downloading ROMs to "${MAMEDIR}" - Be Patient!!!"
    echo ""
    sleep 5
 

@@ -185,7 +185,11 @@ download_mame_roms_from_mra() {
                      ;;	     
 	    '0228')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME_0.228_ROMs_merged/MAME_0.228_ROMs_merged.zip/${f}"
-                     ;;	     
+                     ;;	    
+	    '0229')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0229/${f}"
+                     ;;	  
+		     
             *)
                   echo "MAME version not listed in MRA or there is no download source for the version, downloading from .217 set"
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip/${f}"

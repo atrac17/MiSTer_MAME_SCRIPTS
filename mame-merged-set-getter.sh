@@ -99,8 +99,6 @@ if [[ "${INSTALL^^}" == "TRUE" ]] && [ ! -e "/media/fat/Scripts/update_mame-gett
 fi
 
 
-# CPS2
-declare -A DECRYPT_ROMS=([1944dm.zip]=true [1944jdm.zip]=true [19xxjr1dm.zip]=true [19xxdm.zip]=true [19xxbdl.zip]=true [19xxhdl.zip]=true [19xxjdl.zip]=true [avspadm.zip]=true [avspdm.zip]=true [avsphdm.zip]=true [avspjdm.zip]=true [avspudm.zip]=true [batciradm.zip]=true [batcirdm.zip]=true [batcirjdm.zip]=true [batcirudm.zip]=true [csclubadm.zip]=true [csclubdm.zip]=true [csclubjdm.zip]=true [cybotsjdl.zip]=true [cybotsjdm.zip]=true [cybotsudm.zip]=true [dstlkur1dl.zip]=true [dimahoodm.zip]=true [dimahooudm.zip]=true [ddtodudm.zip]=true [ddtodjdl.zip]=true [ddtodjr1dl.zip]=true [ddtodjr2dl.zip]=true [ddsombdl.zip]=true [ddsomdl.zip]=true [ddsomudl.zip]=true [ddsomjdl.zip]=true [gigawingjr1dm.zip]=true [gigawingdm.zip]=true [gmahoudm.zip]=true [hsf2adi.zip]=true [hsf2di.zip]=true [hsf2j1dl.zip]=true [hsf2jdl.zip]=true [chokodl.zip]=true [mmatrixdm.zip]=true [mmatrixjdm.zip]=true [mshjdm.zip]=true [mshudm.zip]=true [mshvsfj2dl.zip]=true [mvschdl.zip]=true [mvscbdl.zip]=true [mvscdl.zip]=true [mvscjdl.zip]=true [mvscjr1dl.zip]=true [mvscur1dl.zip]=true [mvscudm.zip]=true [megaman2adm.zip]=true [megaman2dm.zip]=true [mpangjdl.zip]=true [mpangudl.zip]=true [pfghtjdi.zip]=true [pgeardl.zip]=true [progearjdi.zip]=true [progearudi.zip]=true [pzloop2jr1dl.zip]=true [qndreamdl.zip]=true [ringdestdl.zip]=true [ringdestadl.zip]=true [smbombdl.zip]=true [smbombr1dl.zip]=true [ringdestadm.zip]=true [rmancp2jdl.zip]=true [rockman2jdm.zip]=true [sfar1dl.zip]=true [sfadi.zip]=true [sfaudm.zip]=true [sfa2ur1dl.zip]=true [sfzjr2dl.zip]=true [sfzjr0dm.zip]=true [sfzjdl.zip]=true [sfzbr1dl.zip]=true [sfzbdl.zip]=true [sfa3di.zip]=true [sfa3hdi.zip]=true [sfa3udi.zip]=true [sfzadm.zip]=true [sfz2jr1dl.zip]=true [sfz2adl.zip]=true [sfz2albdl.zip]=true [sfz2aldl.zip]=true [sfz2alhdl.zip]=true [sfz3adi.zip]=true [sfz3jdi.zip]=true [sfz3jr2dl.zip]=true [sgemfdi.zip]=true [sgemfhdi.zip]=true [spf2thdm.zip]=true [spf2xjdm.zip]=true [ssf2hdm.zip]=true [ssf2jr1dm.zip]=true [ssf2udm.zip]=true [ssf2dm.zip]=true [ssf2tur1di.zip]=true [ssf2tdi.zip]=true [ssf2xjdi.zip]=true [ssf2xjrdi.zip]=true [ssf2tbjdl.zip]=true [ssf2tbjr1dl.zip]=true [uecologydl.zip]=true [ecofghtrdl.zip]=true [ecofghtradl.zip]=true [ecofghtru1dl.zip]=true [ecofghtrhdl.zip]=true [ecofghtrudl.zip]=true [vampjdl.zip]=true [vampjr1dl.zip]=true [vhuntjr2dl.zip]=true [vhuntjr1dl.zip]=true [vhuntjdl.zip]=true [vsavadi.zip]=true [vsavdi.zip]=true [vsavhdi.zip]=true [vsavjdi.zip]=true [vsavudi.zip]=true [vsav2dl.zip]=true [xmcotaar1dm.zip]=true [xmcotadi.zip]=true [xmcotahdi.zip]=true [xmcotaur1dm.zip]=true [xmcotajdl.zip]=true [xmcotajd_950331.zip]=true [xmvsfdi.zip]=true [xmvsfhdi.zip]=true [xmvsfjdi.zip]=true [xmvsfudm.zip]=true [xmvsfur1di.zip]=true)
 
 download_mame_roms_from_mra() {
    local MRA_FILE="${1}"
@@ -125,7 +123,7 @@ download_mame_roms_from_mra() {
       ZIP_PATH="${ROMMAME}/${f}"
       if [ ! -f "${ZIP_PATH}" ] && \
       [ $(grep -ic hbmame "${MRA_FILE}") -eq 0 ] && \
-      { ${DECRYPT_ROMS[${f}]:-false} || [ `grep -c -Fx "${f}" /tmp/mame-merged-set-getter.sh` -gt 0 ]; } && \
+      [ `grep -c -Fx "${f}" /tmp/mame-merged-set-getter.sh` -gt 0 ] && \
       [ x"${f}" != x ]
       then
          if [[ "${FIRST_ZIP}" == "true" ]] ; then
@@ -133,11 +131,6 @@ download_mame_roms_from_mra() {
             FIRST_ZIP="false"
          fi
          echo -n "ZIP: ${f} "
-
-         # CPS2
-         if ${DECRYPT_ROMS[${f}]:-false} ; then
-            curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://cps2.avalaunch.net/downloads/${f}"
-         else
 
          if [ x$(grep "mameversion" "${MRA_FILE}" | sed 's/<mameversion>//' | sed 's/<\/mameversion>//'| sed 's/[[:blank:]]//g'| head -1) != x ]
          then
@@ -195,9 +188,6 @@ download_mame_roms_from_mra() {
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip/${f}"
                      ;;
          esac
-
-         # CPS2
-         fi
 
          #####CLEAN UP######
 

@@ -34,10 +34,10 @@ MRADIR="/media/fat/_Arcade"
 INSTALL="false"
 INIFILE="$(pwd)/update_mame-getter.ini"
 
-CURL_RETRY="${CURL_RETRY:---connect-timeout 15 --max-time 180 --retry 3 --retry-delay 5 --show-error}"
+CURL_RETRY="${CURL_RETRY:---connect-timeout 15 --max-time 300 --retry 3 --retry-delay 5 --show-error}"
 SSL_SECURITY_OPTION="${SSL_SECURITY_OPTION:---insecure}"
 
-EXITSTATUS=0
+rm /tmp/mame_getter_errors 2> /dev/null || true
 #####INI FILES VARS######
 
 INIFILE_FIXED=$(mktemp)
@@ -191,9 +191,16 @@ download_mame_roms_from_mra() {
 
          #####CLEAN UP######
 
-         if [ ! -s "$ROMMAME"/"${f}" ]
-         then
-            EXITSTATUS=1
+         CURL_RESULT=$?
+
+         if [[ "${CURL_RESULT}" == "28" ]] ; then
+            touch /tmp/mame_getter_errors
+            echo ""
+            echo "cURL error for "${f}"!"
+            echo "Try increase the max time of CURL_RETRY if the error persists."
+            rm -v "$ROMMAME"/"${f}" || true
+         elif [ ! -s "$ROMMAME"/"${f}" ] ; then
+            ouch /tmp/mame_getter_errors
             echo ""
             echo "0 byte file found for "${f}"!"
             echo "This happens when the file is missing or unavailable from the download source."
@@ -306,9 +313,11 @@ mame_getter_optimized() {
       download_mame_roms_from_mra "${i}"
    done
 
-   echo "${MAME_GETTER_VERSION}" > "${LAST_RUN_PATH}"
-   echo "${INI_DATE}" >> "${LAST_RUN_PATH}"
-   echo "${MRA_DATE}" >> "${LAST_RUN_PATH}"
+   if [ ! -f /tmp/mame_getter_errors ] ; then
+      echo "${MAME_GETTER_VERSION}" > "${LAST_RUN_PATH}"
+      echo "${INI_DATE}" >> "${LAST_RUN_PATH}"
+      echo "${MRA_DATE}" >> "${LAST_RUN_PATH}"
+   fi
 }
 
 if [ ${#} -eq 2 ] && [ "${1}" == "--input-file" ] ; then
@@ -353,19 +362,17 @@ fi
 rm /tmp/mame.getter.zip.file
 rm /tmp/mame.getter.mra.file
 
-echo
-echo "SUCCESS!"
-echo
-
-######INFO#####
-if [ -d "/media/fat/_Arcade/mame" ] ; then
+if [ ! -f /tmp/mame_getter_errors ] ; then
    echo
-   echo "INFO: As of 6/11/2020 the default directory has been changed to /media/fat/games/mame"
-   echo "INFO: Please move all roms from /media/fat/_Arcade/mame/* to /media/fat/games/mame/"
-   echo "INFO: You may still set a custom ROMMAME path in update_mame-getter.ini if needed"
+   echo "SUCCESS!"
+   echo
+   exit 0
+else
+   echo
+   echo "Some error happened. Try again later!"
+   echo
+   exit 1
 fi
-
-exit ${EXITSTATUS}
 
 #####MERGED .220 LIST######
 005.zip

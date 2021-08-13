@@ -199,7 +199,12 @@ download_hbmame_roms_from_mra() {
 }
 
 hbmame_getter_optimized() {
-   local WORK_PATH="/media/fat/Scripts/.cache/hbmame-getter"
+   local CACHE_HBMAME_GETTER_PATH="/media/fat/Scripts/.cache/hbmame-getter"
+   local CONFIG_HBMAME_GETTER_PATH="/media/fat/Scripts/.config/hbmame-getter"
+   mkdir -p "/media/fat/Scripts/.config"
+   [ -d "${CACHE_HBMAME_GETTER_PATH}" ] && mv "${CACHE_HBMAME_GETTER_PATH}" "${CONFIG_HBMAME_GETTER_PATH}"
+
+   local WORK_PATH="/media/fat/Scripts/.config/hbmame-getter"
    mkdir -p "${WORK_PATH}"
 
    local INI_DATE=

@@ -213,7 +213,12 @@ download_mame_roms_from_mra() {
 }
 
 mame_getter_optimized() {
-   local WORK_PATH="/media/fat/Scripts/.cache/mame-getter"
+   local CACHE_MAME_GETTER_PATH="/media/fat/Scripts/.cache/mame-getter"
+   local CONFIG_MAME_GETTER_PATH="/media/fat/Scripts/.config/mame-getter"
+   mkdir -p "/media/fat/Scripts/.config"
+   [ -d "${CACHE_MAME_GETTER_PATH}" ] && mv "${CACHE_MAME_GETTER_PATH}" "${CONFIG_MAME_GETTER_PATH}"
+
+   local WORK_PATH="/media/fat/Scripts/.config/mame-getter"
    mkdir -p "${WORK_PATH}"
 
    local INI_DATE=

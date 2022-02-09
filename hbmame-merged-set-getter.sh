@@ -78,21 +78,13 @@ if [ `grep -c "CURL_RETRY=" "${INIFILE_FIXED}"` -gt 0 ]
 fi 2>/dev/null
 
 GAMESDIR_FOLDERS=( \
-    /media/usb0 \
-    /media/usb1 \
-    /media/usb2 \
-    /media/usb3 \
-    /media/usb4 \
-    /media/usb5 \
     /media/usb0/games \
     /media/usb1/games \
     /media/usb2/games \
     /media/usb3/games \
     /media/usb4/games \
     /media/usb5/games \
-    /media/fat/cifs \
     /media/fat/cifs/games \
-    /media/fat \
     /media/fat/games \
 )
 

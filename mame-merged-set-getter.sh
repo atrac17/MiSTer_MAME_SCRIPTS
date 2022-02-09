@@ -74,7 +74,61 @@ if [ `grep -c "CURL_RETRY=" "${INIFILE_FIXED}"` -gt 0 ]
       CURL_RETRY=`grep "CURL_RETRY=" "${INIFILE_FIXED}" | awk -F "=" '{print$2}' | sed -e 's/^ *//' -e 's/ *$//' -e 's/^"//' -e 's/"$//'`
 fi 2>/dev/null
 
-mkdir -p ${ROMMAME}
+GAMESDIR_FOLDERS=( \
+    /media/usb0 \
+    /media/usb1 \
+    /media/usb2 \
+    /media/usb3 \
+    /media/usb4 \
+    /media/usb5 \
+    /media/usb0/games \
+    /media/usb1/games \
+    /media/usb2/games \
+    /media/usb3/games \
+    /media/usb4/games \
+    /media/usb5/games \
+    /media/fat/cifs \
+    /media/fat/cifs/games \
+    /media/fat \
+    /media/fat/games \
+)
+
+GETTER_DO()
+{
+    local SYSTEM="${1}"
+
+    shift
+
+    GET_SYSTEM_FOLDER "${SYSTEM}"
+    local SYSTEM_FOLDER="${GET_SYSTEM_FOLDER_RESULT}"
+    local GAMESDIR="${GET_SYSTEM_FOLDER_GAMESDIR}"
+
+    if [[ "${SYSTEM_FOLDER}" != "" ]]
+        then
+            ROMMAME="${GAMESDIR}/${SYSTEM}"
+            mkdir -p $ROMMAME
+    fi	
+}
+
+GET_SYSTEM_FOLDER_GAMESDIR=
+GET_SYSTEM_FOLDER_RESULT=
+GET_SYSTEM_FOLDER()
+{
+    GET_SYSTEM_FOLDER_GAMESDIR="/media/fat/games"
+    GET_SYSTEM_FOLDER_RESULT=
+    local SYSTEM="${1}"
+    for folder in ${GAMESDIR_FOLDERS[@]}
+    do
+        local RESULT=$(find "${folder}" -maxdepth 1 -type d -iname "${SYSTEM}" -printf "%P\n" -quit 2> /dev/null)
+        if [[ "${RESULT}" != "" ]] ; then
+            GET_SYSTEM_FOLDER_GAMESDIR="${folder}"
+            GET_SYSTEM_FOLDER_RESULT="${RESULT}"
+            break
+        fi
+    done
+}
+
+GETTER_DO mame
 
 #####INFO TXT#####
 

@@ -218,7 +218,7 @@ download_mame_roms_from_mra() {
             echo "Try increase the max time of CURL_RETRY if the error persists."
             rm -v "$ROMMAME"/"${f}" || true
          elif [ ! -s "$ROMMAME"/"${f}" ] ; then
-            ouch /tmp/mame_getter_errors
+            touch /tmp/mame_getter_errors
             echo ""
             echo "0 byte file found for "${f}"!"
             echo "This happens when the file is missing or unavailable from the download source."

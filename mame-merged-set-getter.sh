@@ -207,6 +207,12 @@ download_mame_roms_from_mra() {
                      ;;
          esac
 
+	 # Fallback
+         if [ ! -s "$ROMMAME"/"${f}" ] ; then
+             echo "MAME rom not found on $VER set, downloading from .240 set"
+             curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0240/${f}"
+	 fi
+
          #####CLEAN UP######
 
          CURL_RESULT=$?

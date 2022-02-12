@@ -192,46 +192,48 @@ download_mame_roms_from_mra() {
 
          case "$VER" in
 
-            '0209')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME209RomsOnlyMerged/${f}"
-                     ;;
-            '0216')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME216RomsOnlyMerged/${f}"
-                     ;;
-            '0217')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip/${f}"
-                     ;;
-            '0218')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME218RomsOnlyMerged/MAME%200.218%20ROMs%20%28merged%29.zip/${f}"
-                     ;;
-            '0219')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME219RomsOnlyMerged/MAME%200.219%20ROMs%20%28merged%29.zip/${f}"
-                     ;;
-            '0220')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME220RomsOnlyMerged/${f}"
-                     ;;
-            '0221')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME221RomsOnlyMerged/${f}"
-                     ;;
-            '0222')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME222RomsOnlyMerged/${f}"
-                     ;;		     
-            '0223')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME223RomsOnlyMerged/${f}"
-                     ;;		     
-	    '0224')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME224RomsOnlyMerged/${f}"
-                     ;;	     
-	    '0228')
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME_0.228_ROMs_merged/MAME_0.228_ROMs_merged.zip/${f}"
-                     ;;	    
-	    '0229')
+            '0229')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0229/${f}"
                      ;;	  
-		     
+            '0230')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0230.revival/${f}"
+                     ;;	  
+            '0231')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0231/${f}"
+                     ;;	  
+            '0232')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0232/${f}"
+                     ;;	  
+            '0233')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0233/${f}"
+                     ;;	  
+            '0234')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0234/${f}"
+                     ;;	  
+            '0235')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0235/${f}"
+                     ;;	  
+            '0236')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0236/${f}"
+                     ;;	  
+            '0237')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0237/${f}"
+                     ;;	  
+            '0238')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0238/${f}"
+                     ;;	  
+            '0239')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0239/${f}"
+                     ;;	  
+            '0240')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0240/${f}"
+                     ;;	  
+            'darksoft_neogeo')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mister_neogeo/${f}"
+                     ;;	  
             *)
-                  echo "MAME version not listed in MRA or there is no download source for the version, downloading from .217 set"
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/MAME217RomsOnlyMerged/MAME%200.217%20ROMs%20%28merged%29.zip/${f}"
+                  echo "MAME version not listed in MRA or there is no download source for the version, downloading from .240 set"
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/details/mame.0240/${f}"
                      ;;
          esac
 

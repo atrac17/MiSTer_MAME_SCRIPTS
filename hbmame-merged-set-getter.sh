@@ -84,6 +84,7 @@ GAMESDIR_FOLDERS=( \
     /media/usb3/games \
     /media/usb4/games \
     /media/usb5/games \
+    /media/fat/cifs \
     /media/fat/cifs/games \
     /media/fat/games \
 )

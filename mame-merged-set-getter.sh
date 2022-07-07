@@ -198,19 +198,22 @@ download_mame_roms_from_mra() {
             '0240')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0240/${f}"
                      ;;	  
+            '0245')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0245.revival/${f}"
+                     ;;	  
             'darksoft_neogeo')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mister_neogeo/${f}"
                      ;;	  
             *)
-                  echo "MAME version not listed in MRA or there is no download source for the version, downloading from .240 set"
-                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0240/${f}"
+                  echo "MAME version not listed in MRA or there is no download source for the version, downloading from .245 set"
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0245.revival/${f}"
                      ;;
          esac
 
 	 # Fallback
          if [ ! -s "$ROMMAME"/"${f}" ] ; then
-             echo "MAME rom not found on $VER set, downloading from .240 set"
-             curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0240/${f}"
+             echo "MAME rom not found on $VER set, downloading from .245 set"
+             curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0245.revival/${f}"
 	 fi
 
          #####CLEAN UP######
@@ -403,8 +406,7 @@ else
    exit 1
 fi
 
-#mameset 240
-005.zip
+#mameset 245
 100lions.zip
 10yard.zip
 110dance.zip
@@ -421,11 +423,11 @@ fi
 1945kiii.zip
 19xx.zip
 1on1gov.zip
-2001tgm.zip
 2020bb.zip
 20pacgal.zip
 22vp931.zip
 240in1ar.zip
+245_list.txt
 24_150.zip
 24cdjuke.zip
 25pacman.zip
@@ -478,7 +480,6 @@ fi
 68ksbc.zip
 720.zip
 7951om.zip
-7in1ss.zip
 7jigen.zip
 7mezzo.zip
 7ordi.zip
@@ -510,6 +511,7 @@ a2cffa02.zip
 a2cffa2.zip
 a2corvus.zip
 a2diskii.zip
+a2excel9.zip
 a2focdrv.zip
 a2grappler.zip
 a2grapplerplus.zip
@@ -527,6 +529,7 @@ a2sd.zip
 a2sider1.zip
 a2sider2.zip
 a2ssc.zip
+a2superdrive.zip
 a2suprterm.zip
 a2surance.zip
 a2swyft.zip
@@ -646,7 +649,7 @@ ace.zip
 ace_sp_reelctrl.zip
 ace_sp_reelctrl_pcp.zip
 aceattac.zip
-acedrvrw.zip
+acedrive.zip
 aceex2814.zip
 acefruit.zip
 acheart.zip
@@ -974,11 +977,16 @@ arc_etherd.zip
 arc_etherr.zip
 arc_faxpack.zip
 arc_greyhawk.zip
+arc_hdisc_akd52.zip
+arc_hdisc_cw.zip
+arc_hdisc_morley.zip
+arc_hdisc_we.zip
 arc_ide_be.zip
 arc_ide_rdev.zip
 arc_iomidi_aka15.zip
 arc_lark.zip
 arc_lbp4.zip
+arc_midi2.zip
 arc_midi_aka16.zip
 arc_midimax.zip
 arc_midimax2.zip
@@ -1148,6 +1156,7 @@ atronic.zip
 atrwild.zip
 att4425.zip
 att610.zip
+att615.zip
 att630.zip
 att730x.zip
 attache.zip
@@ -1165,6 +1174,7 @@ aussieby.zip
 austin.zip
 autmoon.zip
 autopapa.zip
+autorace.zip
 av2mj1bb.zip
 av2mj2rg.zip
 avalnc13.zip
@@ -1304,6 +1314,7 @@ bballoon.zip
 bballrmt.zip
 bballs.zip
 bbb109.zip
+bbbingo.zip
 bbbowlin.zip
 bbbxing.zip
 bbc_acorn1770.zip
@@ -1317,6 +1328,7 @@ bbc_bitstik1.zip
 bbc_bitstik2.zip
 bbc_cc500.zip
 bbc_chameleon.zip
+bbc_cisco.zip
 bbc_cumana1.zip
 bbc_cumana2.zip
 bbc_cumana68k.zip
@@ -1325,6 +1337,7 @@ bbc_datacentre.zip
 bbc_ieee488.zip
 bbc_integrab.zip
 bbc_kenda.zip
+bbc_memexb20.zip
 bbc_mertec.zip
 bbc_morleyaa.zip
 bbc_multiform.zip
@@ -1350,6 +1363,8 @@ bbc_tube_16032.zip
 bbc_tube_32016.zip
 bbc_tube_32016l.zip
 bbc_tube_6502.zip
+bbc_tube_6502e.zip
+bbc_tube_6502p.zip
 bbc_tube_65c102.zip
 bbc_tube_80186.zip
 bbc_tube_80286.zip
@@ -1427,6 +1442,7 @@ beijuehh.zip
 bejpoker.zip
 bel.zip
 bellring.zip
+bellybmbr.zip
 belslots.zip
 benberob.zip
 berabohm.zip
@@ -1453,6 +1469,7 @@ bg_barmy.zip
 bg_ddb.zip
 bg_max.zip
 bgaregga.zip
+bgbasketb.zip
 bguns_l8.zip
 bhol_ltd.zip
 big10.zip
@@ -1532,6 +1549,7 @@ bking2.zip
 bking3.zip
 bkrankp.zip
 bkrtmaq.zip
+bkungfu.zip
 black.zip
 black100.zip
 blackbd.zip
@@ -1545,6 +1563,7 @@ blakpyra.zip
 blandia.zip
 blasted.zip
 blaster.zip
+blastit.zip
 blasto.zip
 blastoff.zip
 blazeon.zip
@@ -1557,6 +1576,7 @@ blckhols.zip
 bldyr3b.zip
 bldyrolr.zip
 bldyror2.zip
+blicks.zip
 blit.zip
 blitz.zip
 blitz2k.zip
@@ -1657,6 +1677,7 @@ bombaway.zip
 bombbee.zip
 bombjack.zip
 bombkick.zip
+bombman.zip
 bombsa.zip
 bonanza.zip
 bonebstr.zip
@@ -1692,6 +1713,7 @@ bowler.zip
 bowlrama.zip
 bowlroad.zip
 bowltry.zip
+bowmen.zip
 boxer.zip
 boxingb.zip
 boxingm.zip
@@ -1754,6 +1776,7 @@ btchamp.zip
 btime.zip
 btippers.zip
 btlecity.zip
+btlfront.zip
 btlkroad.zip
 btltryst.zip
 btmn_106.zip
@@ -1849,6 +1872,7 @@ c64_mscr.zip
 c64_nl10.zip
 c64_supercpu.zip
 c64_xl80.zip
+c64_z80videopak.zip
 c64dtv.zip
 c65.zip
 c80.zip
@@ -2029,6 +2053,7 @@ cedmag.zip
 centaur.zip
 centauri.zip
 centiped.zip
+centrion.zip
 cerberup.zip
 cerberus.zip
 ceres1.zip
@@ -2127,6 +2152,7 @@ chesstrvi.zip
 chewheel.zip
 chexx83.zip
 cheyenne.zip
+chicgum.zip
 chicken.zip
 chickna5.zip
 chihiro.zip
@@ -2177,6 +2203,7 @@ citycon.zip
 citylove.zip
 cityslck.zip
 cj3play.zip
+cjbj.zip
 cjddzsp.zip
 cjdh2.zip
 cjffruit.zip
@@ -2211,6 +2238,7 @@ clown.zip
 clowndwn.zip
 clowns.zip
 clpoker.zip
+clrmatch.zip
 clshroad.zip
 cltchitr.zip
 club90s.zip
@@ -2263,6 +2291,7 @@ cmv801.zip
 cnbaskb.zip
 cncchess.zip
 cncchess2.zip
+cncchess3.zip
 cnfball.zip
 cnfball2.zip
 cnightst.zip
@@ -2337,6 +2366,7 @@ comg157.zip
 comg159.zip
 comg164.zip
 comg168.zip
+comg170.zip
 comg172.zip
 comg175.zip
 comg176.zip
@@ -2407,6 +2437,7 @@ coozumou.zip
 cop01.zip
 cops.zip
 copsnrob.zip
+copspa.zip
 copycat.zip
 coralr2.zip
 coralrc2.zip
@@ -2432,6 +2463,7 @@ countdwn.zip
 countrun.zip
 countryc.zip
 couple.zip
+covidarts.zip
 cowboy.zip
 cowboy2.zip
 cowtipp.zip
@@ -2462,7 +2494,9 @@ cpc_smartwatch.zip
 cpc_ssa1.zip
 cpc_transtape.zip
 cpg120.zip
+cphantom.zip
 cpoker.zip
+cpoker2.zip
 cpokerpk.zip
 cppicf.zip
 cprobowl.zip
@@ -2473,6 +2507,7 @@ cptennis.zip
 cpthook.zip
 cptlucky.zip
 cpu09.zip
+cpuap.zip
 cpzodiac.zip
 cq90_028.zip
 cqback.zip
@@ -2589,12 +2624,14 @@ ctk551.zip
 ctntune.zip
 ctomaday.zip
 ctornado.zip
+ctower.zip
 ctribe.zip
 ctstein.zip
 ctsttape.zip
 cubeqst.zip
 cubo.zip
 cubybop.zip
+cucaracha.zip
 cuckoo.zip
 cuda.zip
 cue.zip
@@ -2666,6 +2703,7 @@ daiyogen.zip
 dakar.zip
 dakkochn.zip
 dallas32.zip
+dallaspk.zip
 dambustr.zip
 damesc.zip
 dance555.zip
@@ -2682,6 +2720,7 @@ dangerz.zip
 dangseed.zip
 dankuga.zip
 daraku.zip
+dardos.zip
 darius.zip
 darius2.zip
 dariusg.zip
@@ -2873,6 +2912,7 @@ diamond.zip
 diamondking.zip
 diamondp.zip
 dibifuca.zip
+dicegame.zip
 didj.zip
 diehard.zip
 dietgo.zip
@@ -2884,6 +2924,8 @@ diggerc.zip
 diggerma.zip
 digijet.zip
 digilog320.zip
+digilog400.zip
+digilog_kbd.zip
 dim68k.zip
 dimahoo.zip
 dimeye.zip
@@ -2894,6 +2936,7 @@ dingo.zip
 dino.zip
 dinodino.zip
 dinoeggs.zip
+dinofmly.zip
 dinoki25.zip
 dinoki4.zip
 dinoking.zip
@@ -3148,6 +3191,7 @@ dwex.zip
 dwpc.zip
 dx100.zip
 dx11.zip
+dxfootb.zip
 dybb99.zip
 dybbnao.zip
 dyger.zip
@@ -3285,6 +3329,8 @@ eleciq.zip
 electron.zip
 electron_ap1.zip
 electron_ap6.zip
+electron_elksd128.zip
+electron_elksd64.zip
 electron_m2105.zip
 electron_mc68k.zip
 electron_mode7.zip
@@ -3552,6 +3598,7 @@ epo_tfit.zip
 eprom.zip
 eps.zip
 epson_pf10.zip
+epson_qx_option_multifont.zip
 epson_tf20.zip
 equites.zip
 ergo201.zip
@@ -3587,7 +3634,11 @@ eurocom2.zip
 eurodsr.zip
 eurogame.zip
 europass.zip
+europc.zip
+europc2.zip
+europc_kbd.zip
 europl01.zip
+euroxt.zip
 ev346.zip
 eva24.zip
 evelknie.zip
@@ -3632,6 +3683,7 @@ exsafar.zip
 exsprt48.zip
 extdwnhl.zip
 exterm.zip
+extradrw.zip
 extrmatn.zip
 extrmth.zip
 extrmti.zip
@@ -3663,6 +3715,7 @@ f3in1.zip
 faceoff.zip
 facit4440.zip
 faeton.zip
+failgate.zip
 fairyl2.zip
 falcnwld.zip
 falco5220e.zip
@@ -3843,6 +3896,7 @@ flsbeats.zip
 flstory.zip
 flyball.zip
 flyboy.zip
+flyingf.zip
 flytiger.zip
 fm11.zip
 fm16beta.zip
@@ -3892,6 +3946,7 @@ frankst.zip
 franticf.zip
 freddy.zip
 fredmem.zip
+free120.zip
 freedom.zip
 freefall.zip
 freekick.zip
@@ -3899,6 +3954,7 @@ freeway.zip
 freeze.zip
 freezeat.zip
 frenzy.zip
+frenzyxprss.zip
 fresh.zip
 friskyt.zip
 frogger.zip
@@ -3918,6 +3974,7 @@ fruitpc.zip
 fruitsmg.zip
 fruitstb.zip
 fruitstr.zip
+fruitwld.zip
 fs1300.zip
 fs3216.zip
 fs4000.zip
@@ -4005,6 +4062,7 @@ g4u4.zip
 g4u5.zip
 g4u6.zip
 g4u7.zip
+g80_1500.zip
 ga2.zip
 gaia.zip
 gaialast.zip
@@ -4062,6 +4120,7 @@ gamecstl.zip
 gamegear.zip
 gamekin3.zip
 gameking.zip
+gamemach.zip
 gamepock.zip
 gamesnsm.zip
 gametngk.zip
@@ -4119,6 +4178,7 @@ gcpinbal.zip
 gcs2mgp.zip
 gcslottv.zip
 gdarius2.zip
+gdefender.zip
 gdfs.zip
 gdigdug.zip
 gdvsgd.zip
@@ -4160,8 +4220,10 @@ gfxultra.zip
 gfxultrap.zip
 ggate.zip
 ggconnie.zip
+ggdman.zip
 gghost.zip
 ggisuka.zip
+ggoemon.zip
 ggram2.zip
 gground.zip
 ggx.zip
@@ -4334,7 +4396,6 @@ gogostrk.zip
 gogreen.zip
 goindol.zip
 goinnuts.zip
-gokidetor.zip
 goldarch.zip
 goldart.zip
 goldball.zip
@@ -4409,6 +4470,7 @@ grasspin.zip
 gratia.zip
 gratispk.zip
 gravitar.zip
+gravity.zip
 grchamp.zip
 grdforce.zip
 grdian.zip
@@ -4528,6 +4590,7 @@ gunnail.zip
 gunnrose.zip
 gunpey.zip
 gunsense.zip
+gunshot.zip
 gunsmoke.zip
 gunsur2.zip
 gunwars.zip
@@ -4638,6 +4701,7 @@ hb_gpal.zip
 hb_hotst.zip
 hb_jailb.zip
 hb_jkrwl.zip
+hb_junglet.zip
 hb_medal.zip
 hb_mrmon.zip
 hb_rckrl.zip
@@ -4716,6 +4780,7 @@ higemaru.zip
 highnoon.zip
 highroll.zip
 highsplt.zip
+higurashi.zip
 hiimpact.zip
 hikaru.zip
 hikcheck.zip
@@ -4772,12 +4837,14 @@ horekid.zip
 horizon.zip
 horocomp.zip
 horseran.zip
+horses4c.zip
 horshoes.zip
 hostinv.zip
 hotbi13p.zip
 hotbit20.zip
 hotblock.zip
 hotchase.zip
+hotchili.zip
 hotd.zip
 hotd2.zip
 hotd3.zip
@@ -4946,6 +5013,7 @@ icebox.zip
 iceclimb.zip
 iceclmrd.zip
 icecold.zip
+icecoldice.zip
 icefever.zip
 icemania.zip
 ichiban.zip
@@ -5083,7 +5151,6 @@ ipds.zip
 iphone2g.zip
 ipminvad.zip
 ippatsu.zip
-iq128.zip
 iq151.zip
 iq151_disc2.zip
 iq151_minigraf.zip
@@ -5093,7 +5160,6 @@ iq151_video64.zip
 iq7000.zip
 iqblock.zip
 iqpipe.zip
-iqtv512.zip
 iquest.zip
 iqunlim.zip
 iqunlimz.zip
@@ -5123,6 +5189,7 @@ isbc286.zip
 isbc2861.zip
 isbc28612.zip
 isbc8010.zip
+isbc8024.zip
 isbc8030.zip
 isbc86.zip
 isbc8605.zip
@@ -5141,7 +5208,6 @@ iteagle.zip
 itt1700.zip
 itt3030.zip
 itt9216.zip
-itunlim.zip
 itvg49.zip
 itvphone.zip
 ivorytsk.zip
@@ -5599,14 +5665,16 @@ j80topsp.zip
 j80topup.zip
 j80tumbl.zip
 j80wsprt.zip
-j_ewnud.zip
+j_cnudgr.zip
+j_dud.zip
+j_ewn.zip
 j_ews.zip
-j_luck2.zip
-j_luckac.zip
-j_nuddup.zip
-j_plus2.zip
-j_super2.zip
-j_unk.zip
+j_la.zip
+j_lan.zip
+j_lc.zip
+j_lt.zip
+j_ndu.zip
+j_sup2p.zip
 jack.zip
 jack2opn.zip
 jackal.zip
@@ -5793,6 +5861,7 @@ jtc.zip
 jubileep.zip
 juicebox.zip
 juku.zip
+jumanji.zip
 jumpbean.zip
 jumpbug.zip
 jumpcoas.zip
@@ -5852,6 +5921,7 @@ kaguya2.zip
 kaiserkn.zip
 kaitei.zip
 kaiunqz.zip
+kajotcrd.zip
 kakumei.zip
 kakumei2.zip
 kamenrid.zip
@@ -5925,6 +5995,7 @@ kickball.zip
 kickboy.zip
 kicker.zip
 kickgoal.zip
+kicknkick.zip
 kicknrun.zip
 kickoff.zip
 kickridr.zip
@@ -6073,9 +6144,9 @@ kt76.zip
 ktm3.zip
 ktmnt.zip
 ktopgun.zip
+ktparman.zip
 kungfu.zip
 kungfum.zip
-kungfum2.zip
 kungfur.zip
 kungfut.zip
 kurdart.zip
@@ -6094,6 +6165,9 @@ kzaurus.zip
 l9nibble.zip
 la120.zip
 labrinth.zip
+labtam_3232.zip
+labtam_vducom.zip
+labtam_z80sbc.zip
 lacrazyc.zip
 ladybug.zip
 ladyfrog.zip
@@ -6161,6 +6235,7 @@ lca.zip
 lchicken.zip
 lckydraw.zip
 lcmate2.zip
+ld50.zip
 ldquiz4.zip
 ldrink.zip
 ldrun.zip
@@ -6191,8 +6266,11 @@ lemmings.zip
 lemnangl.zip
 lemrol.zip
 leonardo.zip
+lependu.zip
 leprechn.zip
 leprgld.zip
+lespendu.zip
+lespenduj.zip
 lethalen.zip
 lethalj.zip
 lethalth.zip
@@ -6211,6 +6289,7 @@ lgtnfght.zip
 lhaunt_6.zip
 lhb.zip
 lhb2.zip
+lhtb.zip
 lhzb2.zip
 lhzb3.zip
 lhzb3in1.zip
@@ -6230,6 +6309,7 @@ liquidk.zip
 lisa.zip
 lisa2.zip
 littlerb.zip
+liveafb.zip
 livegal.zip
 livequiz.zip
 lizard.zip
@@ -6502,6 +6582,7 @@ m24_z8000.zip
 m2hilite.zip
 m2svlite.zip
 m3.zip
+m3001.zip
 m3acech.zip
 m3autort.zip
 m3bankr.zip
@@ -6567,6 +6648,7 @@ m3winstr.zip
 m3xchngg.zip
 m3xchngu.zip
 m4.zip
+m4001.zip
 m421.zip
 m421club.zip
 m42punlm.zip
@@ -6581,6 +6663,7 @@ m4actnot.zip
 m4actpak.zip
 m4addr.zip
 m4addrcc.zip
+m4addrd.zip
 m4aladn.zip
 m4aliz.zip
 m4alladv.zip
@@ -6674,11 +6757,11 @@ m4ccop.zip
 m4celclb.zip
 m4centpt.zip
 m4ceptr.zip
-m4ch30.zip
 m4chacec.zip
 m4chacef.zip
 m4chasei.zip
 m4cheryo.zip
+m4cjdlx.zip
 m4clab.zip
 m4class.zip
 m4clbclm.zip
@@ -6689,7 +6772,6 @@ m4clbrpl.zip
 m4clbshf.zip
 m4clbveg.zip
 m4clbx.zip
-m4cld02.zip
 m4click.zip
 m4clr.zip
 m4cmont.zip
@@ -6703,7 +6785,6 @@ m4cpfinl.zip
 m4cpycat.zip
 m4crdome.zip
 m4crfire.zip
-m4crjwl.zip
 m4crjwl2.zip
 m4crkpot.zip
 m4crmaze.zip
@@ -6720,7 +6801,6 @@ m4csoc.zip
 m4cstrik.zip
 m4ctn.zip
 m4cwalk.zip
-m4czne.zip
 m4danced.zip
 m4daytn.zip
 m4dbl9.zip
@@ -6736,6 +6816,7 @@ m4dragon.zip
 m4dtyfre.zip
 m4dz.zip
 m4eaw.zip
+m4eaw51.zip
 m4eezee.zip
 m4eighth.zip
 m4elitc.zip
@@ -6766,7 +6847,6 @@ m4frmtx.zip
 m4frnudg.zip
 m4front.zip
 m4frtfl.zip
-m4frtflc.zip
 m4frtgm.zip
 m4frtlnk.zip
 m4frtprs.zip
@@ -6790,6 +6870,7 @@ m4goldnn.zip
 m4goldxc.zip
 m4goodtm.zip
 m4graff.zip
+m4graffd.zip
 m4grands.zip
 m4grbbnk.zip
 m4gtrain.zip
@@ -6815,7 +6896,6 @@ m4hstr.zip
 m4hstrcs.zip
 m4hvhel.zip
 m4hypclb.zip
-m4hypvip.zip
 m4indycr.zip
 m4intcep.zip
 m4jakjok.zip
@@ -6824,10 +6904,11 @@ m4jiggin.zip
 m4jjc.zip
 m4jne.zip
 m4jok2k.zip
-m4jok300.zip
 m4jokmil.zip
 m4jolgem.zip
 m4joljok.zip
+m4joljokd.zip
+m4joljokh.zip
 m4joltav.zip
 m4jp777.zip
 m4jpgem.zip
@@ -6851,6 +6932,7 @@ m4lotclb.zip
 m4lotty.zip
 m4luck7.zip
 m4luckdv.zip
+m4luckdvd.zip
 m4lucklv.zip
 m4lucksc.zip
 m4luckst.zip
@@ -6893,7 +6975,7 @@ m4nick.zip
 m4nifty.zip
 m4nile.zip
 m4nnww.zip
-m4nnwwc.zip
+m4nnww2.zip
 m4nod.zip
 m4nspot.zip
 m4nud2p.zip
@@ -6936,7 +7018,6 @@ m4przsss.zip
 m4przve.zip
 m4przwo.zip
 m4przwta.zip
-m4ptblkc.zip
 m4pulwnc.zip
 m4purmad.zip
 m4pzbing.zip
@@ -6952,9 +7033,8 @@ m4rckrol.zip
 m4rdeal.zip
 m4rdht.zip
 m4ready.zip
+m4redunk.zip
 m4reelpk.zip
-m4reeltm.zip
-m4remag.zip
 m4revolv.zip
 m4rfym.zip
 m4rhfev.zip
@@ -6964,7 +7044,6 @@ m4rhog.zip
 m4rhog2.zip
 m4rhogc.zip
 m4rhr.zip
-m4rhrc.zip
 m4rhrcl.zip
 m4rhrock.zip
 m4rhs.zip
@@ -6975,7 +7054,6 @@ m4riocr.zip
 m4riotrp.zip
 m4rlpick.zip
 m4rltst.zip
-m4rmg.zip
 m4rmtp.zip
 m4rmtpd.zip
 m4roadrn.zip
@@ -7001,6 +7079,7 @@ m4shocm.zip
 m4shodf.zip
 m4shoknr.zip
 m4showtm.zip
+m4shv.zip
 m4silnud.zip
 m4silshd.zip
 m4sinbd.zip
@@ -7027,13 +7106,13 @@ m4stand2.zip
 m4starbr.zip
 m4stards.zip
 m4starst.zip
-m4stc.zip
 m4steptm.zip
 m4stopcl.zip
 m4sunclb.zip
 m4sunday.zip
 m4sunscl.zip
 m4sunset.zip
+m4sunseta.zip
 m4supbf.zip
 m4supbjc.zip
 m4supfru.zip
@@ -7049,10 +7128,8 @@ m4suptwo.zip
 m4sure.zip
 m4surf.zip
 m4swpnot.zip
-m4t266.zip
 m4taj.zip
 m4take2.zip
-m4take5.zip
 m4takepk.zip
 m4tbplay.zip
 m4tbreel.zip
@@ -7083,7 +7160,6 @@ m4trex.zip
 m4trg.zip
 m4tribnk.zip
 m4tricol.zip
-m4tridic.zip
 m4trimad.zip
 m4tropcl.zip
 m4tst.zip
@@ -7092,7 +7168,7 @@ m4ttak.zip
 m4ttdia.zip
 m4ttrail.zip
 m4tupen.zip
-m4tutcl.zip
+m4tutbwb.zip
 m4tutfrt.zip
 m4twilgt.zip
 m4twintm.zip
@@ -7104,13 +7180,14 @@ m4typcl.zip
 m4unibox.zip
 m4unique.zip
 m4univ.zip
-m4unkjok.zip
 m4uuaw.zip
 m4vdexpr.zip
 m4vegast.zip
+m4vegastg.zip
 m4vfm.zip
 m4vivaes.zip
 m4vivalv.zip
+m4vivalvd.zip
 m4vivan.zip
 m4vivess.zip
 m4viz.zip
@@ -7525,6 +7602,7 @@ magician.zip
 magicle.zip
 magicrd2.zip
 magicstk.zip
+magictch.zip
 magictg.zip
 magimask.zip
 magipur.zip
@@ -7536,6 +7614,7 @@ magmerm.zip
 magnum.zip
 magodds.zip
 magreel.zip
+magslot.zip
 magspeed.zip
 magspot.zip
 magspot2.zip
@@ -7580,6 +7659,7 @@ manybloc.zip
 mapacman.zip
 mappy.zip
 marble.zip
+marblmd2.zip
 marc101.zip
 marc250.zip
 marineb.zip
@@ -7637,6 +7717,7 @@ maxaflex.zip
 maxforce.zip
 maxidbl.zip
 maxideal.zip
+maxidpkr.zip
 maxrpm.zip
 maxspeed.zip
 maxx5in1.zip
@@ -7655,7 +7736,9 @@ mazerbla.zip
 mazinger.zip
 mb_10.zip
 mbaa.zip
+mbaseb.zip
 mbaskb.zip
+mbaskb2.zip
 mbc020.zip
 mbc200.zip
 mbc55x.zip
@@ -7759,6 +7842,7 @@ megat7e.zip
 megatack.zip
 megatech.zip
 megazone.zip
+megrescu.zip
 meijinsn.zip
 mekd1.zip
 mekd2.zip
@@ -7812,6 +7896,7 @@ mfightc.zip
 mfish_13.zip
 mfjump.zip
 mfleappad.zip
+mfootb.zip
 mfootb2.zip
 mfunclub.zip
 mg1.zip
@@ -7849,6 +7934,7 @@ miaction.zip
 mice2_z80.zip
 mice_6502.zip
 michigan.zip
+micon2.zip
 micral.zip
 micro20.zip
 microkit.zip
@@ -7887,6 +7973,7 @@ mini2440.zip
 miniboy7.zip
 minichif.zip
 minicom.zip
+minidart.zip
 minifram.zip
 minigolf.zip
 miniguay.zip
@@ -7896,12 +7983,14 @@ miniscc.zip
 minisupf.zip
 minitel2.zip
 minivadr.zip
+minnadk.zip
 miprimlec.zip
 mirage.zip
 mirax.zip
 mirderby.zip
 mirninja.zip
 mirworld.zip
+misatk.zip
 misdraw.zip
 misncrft.zip
 missamer.zip
@@ -7960,6 +8049,7 @@ mjlstory.zip
 mjmaglmp.zip
 mjmania.zip
 mjmyorn2.zip
+mjmyorntr.zip
 mjmyster.zip
 mjmyuniv.zip
 mjnanpas.zip
@@ -7991,6 +8081,7 @@ mk3snes.zip
 mk4.zip
 mk85.zip
 mk90.zip
+mk98.zip
 mkartag2.zip
 mkartagp.zip
 mkeibaou.zip
@@ -8021,6 +8112,7 @@ mm_10.zip
 mmagic.zip
 mmaiko.zip
 mmaruchan.zip
+mmarvin.zip
 mmatrix.zip
 mmaulers.zip
 mmaze.zip
@@ -8092,7 +8184,7 @@ monsterb.zip
 monsterz.zip
 montana.zip
 montec.zip
-montec4le.zip
+montec4.zip
 montecar.zip
 montree.zip
 montreux.zip
@@ -8239,6 +8331,7 @@ msmt071.zip
 msmt081.zip
 msmt094.zip
 msoccer.zip
+msoccer2.zip
 mspacman.zip
 mspactwin.zip
 mspuzzle.zip
@@ -8317,6 +8410,7 @@ mtrain.zip
 mtrap.zip
 mtwins.zip
 mtx512.zip
+mtx_cfx.zip
 mtx_sdxbas.zip
 mtx_sdxcpm.zip
 mu100.zip
@@ -8378,6 +8472,7 @@ mvp.zip
 mvsc.zip
 mvsc2.zip
 mvstemp.zip
+mw4pole.zip
 mwalk.zip
 mwarr.zip
 mwcbaseb.zip
@@ -8402,6 +8497,7 @@ mysprtcp.zip
 mysptqvc.zip
 mystarr.zip
 mystcast.zip
+mysteria.zip
 mysteycm.zip
 mystgard.zip
 mystic.zip
@@ -8464,8 +8560,6 @@ natodef.zip
 naughtyb.zip
 nautilus.zip
 navarone.zip
-nb_48gc.zip
-nb_824gc.zip
 nb_aenet.zip
 nb_amc3b.zip
 nb_btbug.zip
@@ -8474,6 +8568,8 @@ nb_image.zip
 nb_laserview.zip
 nb_m2hr.zip
 nb_m2vc.zip
+nb_mdc48.zip
+nb_mdc824.zip
 nb_qdlink.zip
 nb_rtpd.zip
 nb_sp8s3.zip
@@ -8529,6 +8625,7 @@ neraidou.zip
 nerdwild.zip
 neruton.zip
 nes.zip
+nes_rob.zip
 netchu02.zip
 netmerc.zip
 nettoqc.zip
@@ -8545,6 +8642,7 @@ newhilop.zip
 newmcard.zip
 news.zip
 newsin7.zip
+newtiger.zip
 newtnotp.zip
 newtonmp.zip
 newufo.zip
@@ -8637,6 +8735,7 @@ norautu.zip
 norautua.zip
 norautub.zip
 nost.zip
+nostromo.zip
 notechan.zip
 notetakr.zip
 nouryoku.zip
@@ -8646,9 +8745,11 @@ novoplay.zip
 np600a3.zip
 npcartv1.zip
 npcramen.zip
+npeurver.zip
 npfpit.zip
 npmillen.zip
 npotogib.zip
+nppopeye.zip
 nprobowl.zip
 nprsp.zip
 npscv1.zip
@@ -8663,7 +8764,9 @@ ns5652.zip
 ns8lines.zip
 nshort.zip
 nslasher.zip
+nsmb3.zip
 nsmpoker.zip
+nsmw.zip
 nsnova.zip
 nspirit.zip
 nss.zip
@@ -8680,6 +8783,7 @@ nss_smas.zip
 nss_smw.zip
 nss_ssoc.zip
 nss_sten.zip
+nstarfox.zip
 nstocker.zip
 nstrphnx.zip
 nsub.zip
@@ -8952,12 +9056,16 @@ pc486mu.zip
 pc6001.zip
 pc6001mk2.zip
 pc6001mk2sr.zip
+pc644vz.zip
 pc8001.zip
 pc80s31.zip
 pc80s31k.zip
 pc8201.zip
 pc8500.zip
 pc8801.zip
+pc8801ma.zip
+pc8801mh.zip
+pc8801mk2sr.zip
 pc88va.zip
 pc9801_26.zip
 pc9801_55l.zip
@@ -9090,7 +9198,9 @@ pcp8728.zip
 pcplat.zip
 pcpooh2.zip
 pcpooh3.zip
+pcramclr.zip
 pcscolor.zip
+pcunlim.zip
 pcw16.zip
 pcw8256.zip
 pcx_video.zip
@@ -9412,6 +9522,7 @@ pgm.zip
 pgm3in1.zip
 pgoal.zip
 pgs268.zip
+ph_04.zip
 phantom2.zip
 phantomp.zip
 phantpay.zip
@@ -9438,6 +9549,7 @@ phntmshp.zip
 phoenix.zip
 photoply2k.zip
 photoply2k1it.zip
+photoply2k2be.zip
 photoply2k4.zip
 photoply98sp.zip
 photoply99sp.zip
@@ -9526,6 +9638,7 @@ playboyi.zip
 playboyl.zip
 playboys.zip
 playch10.zip
+playmaker.zip
 plegends.zip
 pleiads.zip
 plgirls.zip
@@ -9537,6 +9650,7 @@ pltkids.zip
 plumppop.zip
 plus1.zip
 plusalph.zip
+plutus.zip
 plycntrchtr.zip
 plygonet.zip
 pm68k.zip
@@ -9574,6 +9688,7 @@ pokoachu.zip
 pokonl97.zip
 pokonyan.zip
 pokrdice.zip
+pokrwild.zip
 polar.zip
 polaris.zip
 polepos.zip
@@ -9601,7 +9716,7 @@ polyvti.zip
 pomp_l1.zip
 pompeia6.zip
 ponchin.zip
-pong.zip
+pongboo2.zip
 ponpoko.zip
 pontoon.zip
 ponttehk.zip
@@ -9775,7 +9890,6 @@ propcycl.zip
 prophecy.zip
 prose2k.zip
 prosoccr.zip
-prospdp.zip
 prosport.zip
 protenn.zip
 proteus.zip
@@ -9836,6 +9950,7 @@ pubball.zip
 pubtimed.zip
 pubtimed2ch.zip
 puchicar.zip
+puckimon.zip
 puckman.zip
 puckpkmn.zip
 pulirula.zip
@@ -10020,6 +10135,7 @@ qwak.zip
 qwakttl.zip
 qx10.zip
 qx10_keyboard.zip
+qy70.zip
 qzchikyu.zip
 qzkklgy2.zip
 qzkklogy.zip
@@ -10081,6 +10197,7 @@ rad_gtg.zip
 rad_hnt.zip
 rad_hnt2.zip
 rad_hnt3.zip
+rad_jcon.zip
 rad_madf.zip
 rad_mtrk.zip
 rad_opus.zip
@@ -10127,6 +10244,7 @@ raisedvl.zip
 raizpin.zip
 rally.zip
 rallybik.zip
+rallypnt2.zip
 rallyx.zip
 rambo.zip
 rambo3.zip
@@ -10145,7 +10263,7 @@ rastan.zip
 ratrc_l1.zip
 raven.zip
 ravens.zip
-raveracw.zip
+raverace.zip
 raystorm.zip
 razmataz.zip
 rbbrite.zip
@@ -10160,6 +10278,11 @@ rblaster.zip
 rbmk.zip
 rbowlorama.zip
 rbspm.zip
+rc2014_micro.zip
+rc2014_mini_cpm.zip
+rc2014_pagable_rom.zip
+rc2014_rom_ram_512k.zip
+rc2014_switchable_rom.zip
 rc2030.zip
 rc3230.zip
 rc702.zip
@@ -10290,6 +10413,7 @@ roadf.zip
 roadriot.zip
 roadrunn.zip
 roadrunr.zip
+roadstar.zip
 roadtrip.zip
 robadv.zip
 robadv2.zip
@@ -10404,12 +10528,18 @@ rungun.zip
 rungun2.zip
 runpuppy.zip
 ruprup.zip
+rush.zip
 rushbets.zip
 rushhero.zip
 rushrst.zip
 rvoicepc.zip
 rvrbt_l3.zip
 rvschool.zip
+rw10r.zip
+rw12r.zip
+rw18r.zip
+rw24k.zip
+rw30r.zip
 rx01.zip
 rx15.zip
 rx78.zip
@@ -10492,6 +10622,7 @@ samuraia.zip
 sandor.zip
 sandscrp.zip
 sanfuze2.zip
+sanma.zip
 sanremmg.zip
 santam.zip
 sapi1.zip
@@ -10510,6 +10641,7 @@ savant.zip
 savia84.zip
 savquest.zip
 sb16.zip
+sb180.zip
 sb2003.zip
 sb2m600b.zip
 sb300p.zip
@@ -10519,6 +10651,7 @@ sbasebal.zip
 sbasketb.zip
 sbasssta.zip
 sbc6510.zip
+sbhoei.zip
 sbishi.zip
 sblast2b.zip
 sbm.zip
@@ -10537,6 +10670,7 @@ sburners.zip
 sbus_hme.zip
 sbus_sunpc.zip
 sbxc.zip
+sc119.zip
 sc1actv8.zip
 sc1armad.zip
 sc1barcd.zip
@@ -10699,6 +10833,7 @@ sc2gtr.zip
 sc2heypr.zip
 sc2hifly.zip
 sc2hypr.zip
+sc2in1.zip
 sc2inst.zip
 sc2kcclb.zip
 sc2luvv.zip
@@ -11523,9 +11658,11 @@ scp300f.zip
 scptchess.zip
 scptour.zip
 scrabble.zip
+scrablex.zip
 scrabsen.zip
 scram_tp.zip
 scramble.zip
+scratch.zip
 screenpl.zip
 scregg.zip
 screwloo.zip
@@ -11561,6 +11698,7 @@ sdwx.zip
 se70.zip
 seabass.zip
 seabattl.zip
+seadevil.zip
 sealdeal.zip
 searchar.zip
 searchey.zip
@@ -11624,6 +11762,7 @@ sentx6p.zip
 sentx6pd.zip
 senwfit.zip
 senwld.zip
+serad.zip
 setaroul.zip
 sexappl.zip
 sexperta.zip
@@ -11651,7 +11790,7 @@ sfex.zip
 sfex2.zip
 sfex2p.zip
 sfexp.zip
-sfight2.zip
+sfightii.zip
 sfiii.zip
 sfiii2.zip
 sfiii3.zip
@@ -11761,6 +11900,7 @@ shtzone.zip
 shuffle.zip
 shufshot.zip
 shuriboy.zip
+shutms11.zip
 shuttlei.zip
 shuuz.zip
 si5500.zip
@@ -11798,6 +11938,8 @@ simutrek.zip
 sinbad.zip
 sindbadm.zip
 sinistar.zip
+sis630_gui.zip
+sis900_eth.zip
 sitcom.zip
 sjryuko.zip
 sk1.zip
@@ -11887,8 +12029,8 @@ smartoss.zip
 smashdrv.zip
 smashtv.zip
 smastmind.zip
-smb.zip
 smbmush.zip
+smbp.zip
 smc777.zip
 smchess.zip
 smf.zip
@@ -11912,6 +12054,7 @@ smsjoker.zip
 smssgame.zip
 smssgamea.zip
 smtma6.zip
+smvme2000.zip
 snake.zip
 snakepit.zip
 snakjack.zip
@@ -12000,6 +12143,9 @@ soulclb3.zip
 soulclbr.zip
 souledge.zip
 soulsurf.zip
+sp3e8bit.zip
+sp3eata.zip
+sp3ezcf.zip
 sp_atw.zip
 sp_beau.zip
 sp_beau2.zip
@@ -12102,6 +12248,7 @@ spcgambl.zip
 spcinv95.zip
 spcking2.zip
 spclforc.zip
+spcliner.zip
 spclords.zip
 spcpnthr.zip
 spcpokan.zip
@@ -12112,6 +12259,7 @@ spcship.zip
 spcteam.zip
 spctrain.zip
 spcwarp.zip
+spdamjes.zip
 spdball.zip
 spdcoin.zip
 spdheat.zip
@@ -12123,6 +12271,8 @@ spec2k.zip
 specforc.zip
 specfrce.zip
 special.zip
+specpl2a.zip
+specpl3e.zip
 spectar.zip
 spectra.zip
 spectrm.zip
@@ -12147,8 +12297,13 @@ spectrum_lprint.zip
 spectrum_lprint3.zip
 spectrum_mface1.zip
 spectrum_mface128.zip
+spectrum_mface128v1.zip
+spectrum_mface1v1.zip
+spectrum_mface1v2.zip
+spectrum_mface1v3.zip
 spectrum_mface3.zip
 spectrum_mikroplus.zip
+spectrum_mpoker.zip
 spectrum_mprint.zip
 spectrum_opus.zip
 spectrum_plus2test.zip
@@ -12157,6 +12312,7 @@ spectrum_proceed.zip
 spectrum_sdi.zip
 spectrum_spdos.zip
 spectrum_speccydos.zip
+spectrum_specmate.zip
 spectrum_swiftdisc.zip
 spectrum_swiftdisc2.zip
 spectrum_usource.zip
@@ -12216,6 +12372,7 @@ spooky.zip
 spookyp.zip
 spool99.zip
 sport2k.zip
+sportmem.zip
 sporzbx.zip
 sporzpp.zip
 sporztn.zip
@@ -12255,6 +12412,7 @@ srally2.zip
 srallyc.zip
 sranger.zip
 srdarwin.zip
+srdchamp.zip
 srdmissn.zip
 srmdb.zip
 srmp1.zip
@@ -12380,7 +12538,6 @@ startrek.zip
 startrep.zip
 startrgn.zip
 startrip.zip
-startrks.zip
 startrp.zip
 starwars.zip
 starwbc.zip
@@ -12442,6 +12599,7 @@ strike.zip
 striker.zip
 strikext.zip
 striv.zip
+strker.zip
 strkfgtr.zip
 strkforc.zip
 strkzn.zip
@@ -12508,6 +12666,7 @@ super21.zip
 super21p.zip
 super6.zip
 super80.zip
+super97.zip
 super9cc.zip
 superabc.zip
 superb2k.zip
@@ -12643,8 +12802,10 @@ szaxxon.zip
 szone_l5.zip
 t2_l8.zip
 t3210.zip
+t3in1sa.zip
 t4490.zip
 t5182.zip
+t7in1ss.zip
 tabe22.zip
 tabpkr.zip
 tacscan.zip
@@ -12724,6 +12885,7 @@ tbtoads.zip
 tbttf.zip
 tbyahhoo.zip
 tc4.zip
+tc7atc.zip
 tcarnavi.zip
 tcaveman.zip
 tccombat.zip
@@ -12766,6 +12928,7 @@ tek4051.zip
 tek4107a.zip
 tek410x_kbd.zip
 tek4132.zip
+tek4319.zip
 tek4404.zip
 tek6130.zip
 tekipaki.zip
@@ -12794,6 +12957,7 @@ tenkai.zip
 tenkomor.zip
 tenpindx.zip
 tenspot.zip
+tenstrikc.zip
 tenthdeg.zip
 tenup.zip
 terabrst.zip
@@ -12852,6 +13016,7 @@ thehand.zip
 themj.zip
 thenanpa.zip
 thepit.zip
+thequest.zip
 theraid.zip
 theroes.zip
 thief.zip
@@ -12919,6 +13084,7 @@ ti99_myarcmem.zip
 ti99_pcode.zip
 ti99_rs232.zip
 ti99_speech.zip
+ti99_tipi.zip
 ti99_whtscsi.zip
 ti_hx5102.zip
 tibusan.zip
@@ -12951,11 +13117,13 @@ timeline.zip
 timeplt.zip
 timescan.zip
 timesold.zip
+timetp25.zip
 timetp36.zip
 timetp7.zip
 timetrv.zip
 timetunl.zip
 tinday.zip
+tinkerbl.zip
 tinklpit.zip
 tinstar.zip
 tinv2650.zip
@@ -12979,6 +13147,7 @@ tk80.zip
 tkarnov.zip
 tkazaam.zip
 tkdensho.zip
+tkjmaru.zip
 tkmag220.zip
 tkmmpzdm.zip
 tkoboxng.zip
@@ -13047,6 +13216,7 @@ tomahawk.zip
 tomcat.zip
 tomcpin.zip
 tomplc.zip
+tomsadvs.zip
 tomy_400.zip
 tondemo.zip
 tonpuu.zip
@@ -13104,6 +13274,7 @@ toukon3.zip
 toukon4.zip
 tour4000.zip
 tour4010.zip
+toureiff.zip
 tourpgum.zip
 toursol.zip
 tourtabl.zip
@@ -13402,6 +13573,8 @@ unk820501.zip
 unk960606.zip
 unkct.zip
 unkeinv.zip
+unkfr004.zip
+unkfr009.zip
 unkh8gam.zip
 unkhorse.zip
 unkhpslt.zip
@@ -13409,11 +13582,16 @@ unkitpkr.zip
 unkkonmd.zip
 unkm1.zip
 unkpacg.zip
+unkpkr_w.zip
+unkpmc.zip
 unkpoker.zip
 unkrfslt.zip
 unks10md.zip
 unksig.zip
+unksmk.zip
 unkte06.zip
+unkts.zip
+unkzilec.zip
 unomedal.zip
 unsquad.zip
 untoucha.zip
@@ -13425,6 +13603,7 @@ urachamu.zip
 urashima.zip
 us2pfball.zip
 usafootb.zip
+usafootf.zip
 usagiym.zip
 usclssic.zip
 usg32.zip
@@ -13465,6 +13644,7 @@ v4dealem.zip
 v4eyedwn.zip
 v4frfact.zip
 v4gldrsh.zip
+v4in1eg.zip
 v4mate.zip
 v4mazbel.zip
 v4mdice.zip
@@ -13582,7 +13762,7 @@ vic1520.zip
 vic20_fe3.zip
 vic20_videopak.zip
 victhc95.zip
-victlapw.zip
+victlap.zip
 victnine.zip
 victor21.zip
 victor5.zip
@@ -13773,6 +13953,7 @@ wangpc_rtc.zip
 wangpc_wdc.zip
 wangpckb.zip
 wanted.zip
+wantgman.zip
 wantsega.zip
 war3cb.zip
 warahana.zip
@@ -13988,10 +14169,13 @@ wy100.zip
 wy120.zip
 wy150.zip
 wy160.zip
+wy185es.zip
 wy30p.zip
+wy325.zip
 wy50.zip
 wy55.zip
 wy60.zip
+wy65.zip
 wy75.zip
 wy85.zip
 wyse700.zip
@@ -14000,6 +14184,7 @@ wzwaysll.zip
 x07.zip
 x1.zip
 x2222.zip
+x37.zip
 x5jokers.zip
 x68000.zip
 x68k_cz6bs1.zip
@@ -14056,6 +14241,7 @@ yamagchi.zip
 yamato.zip
 yamyam.zip
 yarunara.zip
+yattrmnp.zip
 yc64.zip
 yes.zip
 yesnoj.zip
@@ -14175,6 +14361,7 @@ zx80.zip
 zx81.zip
 zzblock.zip
 zzyzzyxx.zip
+
 
 #darksoft_neogeo
 2020bb.zip

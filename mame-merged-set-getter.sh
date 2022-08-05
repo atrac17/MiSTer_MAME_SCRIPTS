@@ -99,7 +99,7 @@ GETTER_DO()
         then
             ROMMAME="${GAMESDIR}/${SYSTEM}"
             mkdir -p $ROMMAME
-    fi	
+    fi
 }
 
 GET_SYSTEM_FOLDER_GAMESDIR=
@@ -129,7 +129,7 @@ if [ `egrep -c "MRADIR|ROMMAME|ROMDIR|INSTALL|CURL_RETRY" "${INIFILE_FIXED}"` -g
       echo ""
       echo "Using "${INIFILE}"" 
       echo ""
-fi 2>/dev/null 
+fi 2>/dev/null
 
 rm ${INIFILE_FIXED}
 
@@ -194,27 +194,30 @@ download_mame_roms_from_mra() {
 
             '0229')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0229/${f}"
-                     ;;	  
+                     ;;
             '0240')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0240/${f}"
-                     ;;	  
+                     ;;
             '0245')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0245.revival/${f}"
-                     ;;	  
+                     ;;
             'darksoft_neogeo')
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mister_neogeo/${f}"
-                     ;;	  
+                     ;;
+            'arcade_offset')
+                  curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/arcade_offset/${f}"
+                     ;;
             *)
                   echo "MAME version not listed in MRA or there is no download source for the version, downloading from .245 set"
                   curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0245.revival/${f}"
                      ;;
          esac
 
-	 # Fallback
+    # Fallback
          if [ ! -s "$ROMMAME"/"${f}" ] ; then
              echo "MAME rom not found on $VER set, downloading from .245 set"
              curl ${CURL_RETRY} ${SSL_SECURITY_OPTION} --fail --location -o "${ZIP_PATH}" "https://archive.org/download/mame.0245.revival/${f}"
-	 fi
+    fi
 
          #####CLEAN UP######
 
@@ -14609,3 +14612,6 @@ zintrckb.zip
 zupapa.zip
 MonitorTest.zip
 Windjammers Supersonic.zip
+
+#arcade_offset
+ssf2tnl_7.zip

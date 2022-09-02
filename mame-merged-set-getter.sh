@@ -14615,3 +14615,4 @@ Windjammers Supersonic.zip
 
 #arcade_offset
 ssf2tnl_7.zip
+truxton2n.zip
